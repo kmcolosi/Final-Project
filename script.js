@@ -54,7 +54,9 @@ function getCookie() {
     for (let i = 0; i < crumbs.length; i++) {
         let x = crumbs[i].trim();
         if (x.indexOf(cookieName) == 0) {
-            return x.split('=')[1];
+            var y = x.split('=');
+            console.log(y)
+            return y[1];
         }
     }
 
