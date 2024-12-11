@@ -23,6 +23,7 @@ function updateDom(username){
 function buttonClick() {
     var username = document.getElementById("username").value;
   
+    saveCookie(username);
     updateDom(username);
 }
 
@@ -31,7 +32,10 @@ function saveCookie(value) {
 
     expiryDate.setTime(expiryDate.getTime() + 1000 * 60 * 60 * 24 * 365);   // Expires in one year.
 
-    document.cookie = cookieName + "=" + value + "; expires=" + expiryDate + "; path=/";
+    document.cookie = encodeURIComponent(cookieName + "=" + value + "; expires=" + expiryDate + "; path=/");
+    console.log(decodeURIComponent(document.cookie));
+
+    console.log("here");
 }
 
 function deleteCookie() {
@@ -39,7 +43,7 @@ function deleteCookie() {
 
     expiryDate.setTime(expiryDate.getTime());   // Expires in one year.
 
-    document.cookie = cookieName + "=; expires=" + expiryDate + "; path=/";
+    document.cookie = encodeURIComponent(cookieName + "=; expires=" + expiryDate + "; path=/");
     location.reload();
 }
 
